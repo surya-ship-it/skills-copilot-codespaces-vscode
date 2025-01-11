@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f9;
+        }
+        form {
+            max-width: 500px;
+            margin: auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        input, textarea, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+        document.getElementById("logoRequestForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const formData = {
+                name: document.getElementById("name").value,
+                email: document.getElementById("email").value,
+                requirements: document.getElementById("requirements").value
+            };
+
+            // Send data to backend for email processing
+            fetch('https://your-backend-url/send-email', {  // Replace with your backend URL
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => {
+                if (response.ok) {
+                    alert("Your request has been submitted successfully!");
+                } else {
+                    alert("There was an error submitting your request. Please try again.");
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("Failed to submit request.");
+            });
+        });
+    </script>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logo Request Form</title>
+</head>
+<body>
+    <h1>Logo Request Form</h1>
+    <form action="https://formspree.io/f/mqaawqbj" method="POST">
+        <label for="name">Your Name:</label><br>
+        <input type="text" id="name" name="name" required><br><br>
+
+        <label for="email">Your Email:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="business-name">Business/Project Name:</label><br>
+        <input type="text" id="business-name" name="business-name" required><br><br>
+
+        <label for="description">Logo Description:</label><br>
+        <textarea id="description" name="description" rows="4" required></textarea><br><br>
+
+        <label for="color-preferences">Color Preferences:</label><br>
+        <input type="text" id="color-preferences" name="color-preferences"><br><br>
+
+        <label for="deadline">Deadline:</label><br>
+        <input type="date" id="deadline" name="deadline"><br><br>
+
+        <button type="submit">Submit Request</button>
+    </form>
+</body>
+</html>
+
+
